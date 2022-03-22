@@ -145,17 +145,6 @@
     document.addEventListener('DOMContentLoaded', function () {
         const loadEl = document.querySelector('#load');
     
-        // firebase.storage().ref('ROBINMAHIEUCV.pdf').getDownloadURL().then((link) => {
-        //     console.log(link);
-        //     var monlien = document.createElement('a');
-        //     var texte = document.createTextNode('Mon cv');
-        //     monlien.appendChild(texte);
-        //     monlien.href= link;
-
-        //     document.getElementById('moncv').appendChild(monlien);
-            
-        // });
-    
         firebase.storage().ref('mon code source.zip').getDownloadURL().then((link) => {
             console.log(link);
             var linksourcecode = document.createElement('a');
