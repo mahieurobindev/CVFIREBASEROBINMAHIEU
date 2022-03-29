@@ -45,6 +45,7 @@
           <li><a href="projets.html">PROJETS</a></li>
           <li><a href="formations.html">FORMATIONS</a></li>
           <li><a href="contact.html">CONTACT</a></li> 
+          <!-- <li id="moncv"></li> -->
           <li id="Moncodesource"></li>  
         </ul>
       </div>
@@ -150,41 +151,36 @@
             document.getElementById('Moncodesource').appendChild(linksourcecode);
             
         });
- class Document extends Component {
-  state = {
-    showInfo: false,
-  };
-  handleInfo = () => {
-    this.setState({
-      showInfo: !this.state.showInfo,
-    });
-  };
-  render() {
-    let { name, info } = this.props.item;
-    return (
-      <div className="document">
-        <h3>{name}</h3>
-        <span className="infos" onClick={this.handleInfo}>
-          <i className="fas fa-plus-circle">Voir plus</i>
-        </span>
-        {this.state.showInfo && (
-          <div className="showInfos">
-            <div className="infosContent">
-              <div className="head">
-                <h2>{name}</h2>
-              </div>
-              <p className="text">{info}</p>
-              <div className="button return" onClick={this.handleInfo}>
-                Retourner a la page
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );  
-  }
-}
-});
+        
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                document.getElementById("firebaseui-auth-container").style.display = "none"; 
+                var div = document.createElement("div");
+                var Text = document.createTextNode("Connecté en tant que " + user.displayName);
+                div.appendChild(Text);
+                document.getElementById("user").appendChild(div);
+                var btn = document.getElementById("button");
+                btn.style.display = "block";
+                btn.addEventListener("click", function(){
+                    firebase.auth().signOut().then(function() {
+                        location.reload();
+                    })
+                .catch(function(error) {
+                    console.log(error);
+                });
+
+                });
+
+
+            } else {
+
+            }
+            });
+<div style="width: 100%;display: flex;justify-content: center;">
+        <button style="border: none;margin:20px 0px;width:fit-content;background-color:white;display: none; padding: 10px; color: #192534;" id="button">Se déconnecter</button>
+    </div>
+      });
+      
 </script>
 </body>
 </html>
