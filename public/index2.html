@@ -48,6 +48,9 @@
           <!-- <li id="moncv"></li> -->
           <li id="Moncodesource"></li>  
         </ul>
+        <div style="width: 100%;display: flex;justify-content: center;">
+          <button style="border: none;margin:20px 0px;width:fit-content;background-color:white;display: none; padding: 10px; color: #192534;" id="button">Se déconnecter</button>
+        </div>
       </div>
     </div>
   </div>
@@ -151,7 +154,7 @@
             document.getElementById('Moncodesource').appendChild(linksourcecode);
             
         });
-        
+
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 document.getElementById("firebaseui-auth-container").style.display = "none"; 
@@ -176,9 +179,7 @@
 
             }
             });
-<div style="width: 100%;display: flex;justify-content: center;">
-        <button style="border: none;margin:20px 0px;width:fit-content;background-color:white;display: none; padding: 10px; color: #192534;" id="button">Se déconnecter</button>
-    </div>
+
       });
       
 </script>
