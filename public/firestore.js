@@ -23,7 +23,7 @@ class Document extends Component {
               </div>
               <p className="text">{info}</p>
               <div className="button return" onClick={this.handleInfo}>
-                Retourner sur la page
+                Retourner a la page
               </div>
             </div>
           </div>
