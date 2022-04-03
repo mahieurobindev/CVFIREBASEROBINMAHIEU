@@ -14,44 +14,18 @@
   <link href="css/style.css" rel="stylesheet">
   
   <script defer src="/__/firebase/9.6.7/firebase-app-compat.js"></script>
-  <!-- include only the Firebase features as you need -->
   <script defer src="/__/firebase/9.6.7/firebase-auth-compat.js"></script>
   <script defer src="/__/firebase/9.6.7/firebase-database-compat.js"></script>
-  <script
-    defer
-    src="/__/firebase/9.6.7/firebase-firestore-compat.js"
-  ></script>
-  <script
-    defer
-    src="/__/firebase/9.6.7/firebase-functions-compat.js"
-  ></script>
-  <script
-    defer
-    src="/__/firebase/9.6.7/firebase-messaging-compat.js"
-  ></script>
+  <script defer src="/__/firebase/9.6.7/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/9.6.7/firebase-functions-compat.js" ></script>
+  <script defersrc="/__/firebase/9.6.7/firebase-messaging-compat.js"></script>
   <script defer src="/__/firebase/9.6.7/firebase-storage-compat.js"></script>
-  <script
-    defer
-    src="/__/firebase/9.6.7/firebase-analytics-compat.js"
-  ></script>
-
-  <script
-    defer
-    src="/__/firebase/9.6.7/firebase-performance-compat.js"
-  ></script>
-
-  <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-  -->
+  <script defer src="/__/firebase/9.6.7/firebase-analytics-compat.js"></script>
+  <script defer src="/__/firebase/9.6.7/firebase-performance-compat.js"></script>
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
   <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-  <link
-    type="text/css"
-    rel="stylesheet"
-    href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
-  />
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"/>
   <script src="index.js"></script>
 <body>
   <div class="navbar navbar-inverse navbar-static-top">
@@ -75,7 +49,7 @@
       </div>
     </div>
   </div>
-<div id="user"></div>
+<center><div id="user"></div></center>
   <div id="ww">
     <div class="container">
       <div class="row">
@@ -124,9 +98,24 @@
   <div style="width: 100%;display: flex;justify-content: center;">
     <button style="border: none;margin:20px 0px;width:fit-content;background-color:white;display: none; padding: 10px; color: #192534;" id="button">Se déconnecter</button>
   </div>
-  <center><h1>authentification</h1></center>
+  <center><h1>Authentification</h1></center>
   <div id="firebaseui-auth-container"></div>
   <center><div id="loader">Loading...</div></center>
+
+  <div id="doc"></div>
+
+  <center><h1>Ajout d'un projet</h1></center>
+  <div class="form-group">
+    <input type="id" name="id" class="form-control" id="id" placeholder="id du projet" data-rule="minlen:4" >
+    <div class="validate"></div>
+  </div>
+  <div class="form-group">
+    <input type="nomduprojet" name="nomduprojet" class="form-control" id="nomduprojet" placeholder="nom du projet" data-rule="nomduprojet" >
+    <div class="validate"></div>
+
+    <div class="form-send">
+      <button type="submit" class="btn btn-large">Envoyer</button>
+    </div>
   <div id="footer">
     <div class="container">
       <div class="row">
@@ -183,8 +172,6 @@
             
         });
     
-      
-    
         var uiConfig = {
                 callbacks: {
                     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
@@ -207,9 +194,6 @@
                 tosUrl: '<your-tos-url>',
                 privacyPolicyUrl: '<your-privacy-policy-url>'
             };
-
-
-
 
             var ui = new firebaseui.auth.AuthUI(firebase.auth());
             ui.start('#firebaseui-auth-container', {
@@ -248,18 +232,21 @@
                 });
             } else {
          }
-    });
+
     const bookRef = firebase
-  .firestore()
-  .collection("moncv")
-  .doc("HSbdVmauhk8bWbzMvWmC");
+    .firestore()
+    .collection("moncv")
+    .doc("HSbdVmauhk8bWbzMvWmC");
 
   bookRef.get().then((doc) => {
     if (!doc.exists) return;
     console.log("données du document:", doc.data());
+    document.getElementById("doc").style.display = "none"; 
+    var div = document.createElement("div");
+    var Text = document.createTextNode("projet " + doc.data());
     });
   });
-  
+});
 </script>
 </body>
 </html>
