@@ -168,6 +168,7 @@
   <script src="js/main.js"></script>
 
   <script>
+    
     document.addEventListener('DOMContentLoaded', function () {
         const loadEl = document.querySelector('#load');
     
@@ -248,7 +249,17 @@
             } else {
          }
     });
+    const bookRef = firebase
+  .firestore()
+  .collection("moncv")
+  .doc("HSbdVmauhk8bWbzMvWmC");
+
+  bookRef.get().then((doc) => {
+    if (!doc.exists) return;
+    console.log("données du document:", doc.data());
+    });
   });
+  
 </script>
 </body>
 </html>
